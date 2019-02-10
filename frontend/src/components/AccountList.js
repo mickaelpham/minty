@@ -1,34 +1,40 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchAccounts } from "../actions";
+import { fetchAccountsAndBanks } from "../actions";
 
 class AccountList extends React.Component {
   componentDidMount() {
-    this.props.fetchAccounts();
+    this.props.fetchAccountsAndBanks();
   }
 
-  renderAccounts() {
-    return this.props.accounts.map(account => {
-      const { name, number } = account.attributes;
+  renderBanksAndAccounts() {
+    return this.props.banks.map(bank => {
+      const accounts = this.props.accounts
+        .filter(account => account.attributes.bankId === parseInt(bank.id))
+        .map(account => <li key={account.id}>{account.attributes.name}</li>);
 
       return (
-        <div className="account" key={account.id}>
-          {name} ({number})
+        <div className="bank" key={bank.id}>
+          <h5>{bank.attributes.name}</h5>
+          <ul>{accounts}</ul>
         </div>
       );
     });
   }
 
   render() {
-    return <>{this.renderAccounts()}</>;
+    return <div className="content">{this.renderBanksAndAccounts()}</div>;
   }
 }
 
 const mapStateToProps = state => {
-  return { accounts: state.accounts };
+  return {
+    accounts: state.accounts,
+    banks: state.banks
+  };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchAccounts }
+  { fetchAccountsAndBanks }
 )(AccountList);

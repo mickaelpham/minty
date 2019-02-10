@@ -9,6 +9,13 @@ const accounts = (state = [], action) => {
   }
 };
 
-export default combineReducers({
-  accounts
-});
+const banks = (state = [], action) => {
+  switch (action.type) {
+    case "FETCH_BANK":
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({ accounts, banks });
