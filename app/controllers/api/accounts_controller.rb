@@ -2,18 +2,14 @@
 
 module API
   class AccountsController < ApplicationController
+    # GET /api/accounts
     def index
-      render json: API::AccountSerializer.new(accounts)
+      render json: API::AccountSerializer.new(Account.all)
     end
 
-    private
-
-    def accounts
-      if (bank_id = params[:bank_id])
-        Account.where(bank_id: bank_id)
-      else
-        Account.all
-      end
+    # GET /api/accounts/:id
+    def show
+      render json: API::AccountSerializer.new(Account.find(params[:id]))
     end
   end
 end
