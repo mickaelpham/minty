@@ -15,6 +15,7 @@ class AccountListDetail extends React.Component {
     return (
       <li>
         <a
+          href={`#${this.props.account.id}`}
           className={`bank-account-name ${isActive ? "is-active" : ""}`}
           onClick={e => this.handleClick(e)}
         >
