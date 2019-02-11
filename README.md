@@ -1,24 +1,29 @@
-# README
+# Minty
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Another application to track your expenses across your bank accounts.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 2.6
+- Node 11.x
 
-* System dependencies
+## Setup (backend)
 
-* Configuration
+```sh
+git clone https://github.com/mickaelpham/minty
+cd minty
+bin/setup
+```
 
-* Database creation
+Then start the Rails server:
 
-* Database initialization
+    bin/rails server
 
-* How to run the test suite
+## Setup (frontend)
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```sh
+# Assuming you are in the minty/ folder
+cd frontend
+yarn install
+yarn start
+```
