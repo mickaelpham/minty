@@ -9,49 +9,49 @@ banks = Bank.create([
 Account.create([
   {
     name: 'Platinum Card',
-    number: '44561234905912',
+    number: '4456111122223333',
     bank: banks[0],
     kind: :credit_card
   },
   {
     name: 'Quicksilver',
-    number: '11223344',
+    number: '4410999988887777',
     bank: banks[1],
     kind: :credit_card
   },
   {
     name: '360 Checking',
-    number: '3601230593',
+    number: '3602222333444',
     bank: banks[1],
     kind: :checking
   },
   {
     name: 'Amazon',
-    number: '2340985019823',
+    number: '4430123412341234',
     bank: banks[2],
     kind: :credit_card
   },
   {
     name: 'Sapphire Reserve',
-    number: '5512034912395',
+    number: '5510345634563456',
     bank: banks[2],
     kind: :credit_card
   },
   {
     name: 'Blue Cash Everyday',
-    number: '2340529039563001',
+    number: '5556987698769876',
     bank: banks[3],
     kind: :credit_card
   },
   {
     name: 'Corporate Card',
-    number: '2340982509812',
+    number: '5570123412341234',
     bank: banks[3],
     kind: :credit_card
   },
   {
     name: 'Online Savings',
-    number: '2150349201',
+    number: '21500011112',
     bank: banks[4],
     kind: :savings
   }
