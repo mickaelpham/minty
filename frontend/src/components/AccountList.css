@@ -1,0 +1,8 @@
+.bank-account-name:hover {
+  color: rebeccapurple;
+  cursor: pointer;
+}
+
+.bank-account-name.selected {
+  font-style: italic;
+}

@@ -3,5 +3,6 @@
 module API
   class BankSerializer < ApplicationSerializer
     attributes :name, :website
+    has_many :accounts
   end
 end

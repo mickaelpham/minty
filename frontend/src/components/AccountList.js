@@ -1,29 +1,47 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchAccountsAndBanks } from "../actions";
+import { fetchAccounts, fetchBanks } from "../actions";
+
+import "./AccountList.css";
+import AccountListDetail from "./AccountListDetail";
 
 class AccountList extends React.Component {
   componentDidMount() {
-    this.props.fetchAccountsAndBanks();
+    this.props.fetchAccounts();
+    this.props.fetchBanks();
   }
 
-  renderBanksAndAccounts() {
-    return this.props.banks.map(bank => {
-      const accounts = this.props.accounts
-        .filter(account => account.attributes.bankId === parseInt(bank.id))
-        .map(account => <li key={account.id}>{account.attributes.name}</li>);
+  renderAccountsForBank(bank) {
+    const accountIds = bank.relationships.accounts.data.map(acc => acc.id);
 
+    return accountIds.map(id => {
+      const account = this.props.accounts[id];
+
+      if (!account) {
+        return <></>;
+      }
+
+      return <AccountListDetail key={id} account={account} />;
+    });
+  }
+
+  renderAccountsGroupedByBank() {
+    return Object.values(this.props.banks).map(bank => {
       return (
-        <div className="bank" key={bank.id}>
-          <h5>{bank.attributes.name}</h5>
-          <ul>{accounts}</ul>
+        <div className="bank box" key={bank.id}>
+          <div className="bank-name">
+            <strong>{bank.attributes.name}</strong>
+          </div>
+          <div className="bank-accounts">
+            {this.renderAccountsForBank(bank)}
+          </div>
         </div>
       );
     });
   }
 
   render() {
-    return <div className="content">{this.renderBanksAndAccounts()}</div>;
+    return <>{this.renderAccountsGroupedByBank()}</>;
   }
 }
 
@@ -36,5 +54,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchAccountsAndBanks }
+  { fetchAccounts, fetchBanks }
 )(AccountList);
