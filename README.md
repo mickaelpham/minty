@@ -6,6 +6,7 @@ Another application to track your expenses across your bank accounts.
 
 - Ruby 2.6
 - Node 11.x
+- PostgreSQL 11.1
 
 ## Setup (backend)
 
