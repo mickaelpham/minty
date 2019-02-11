@@ -28,3 +28,7 @@ cd frontend
 yarn install
 yarn start
 ```
+
+## Screenshots
+
+![User Interface](./screenshot.png)
