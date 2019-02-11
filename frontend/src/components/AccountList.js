@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { fetchAccountsAndBanks } from "../actions";
 
@@ -16,10 +16,6 @@ class AccountList extends React.Component {
     return accountIds.map(id => {
       const account = this.props.accounts[id];
 
-      if (!account) {
-        return <></>;
-      }
-
       return <AccountListDetail key={id} account={account} />;
     });
   }
@@ -27,20 +23,16 @@ class AccountList extends React.Component {
   renderAccountsGroupedByBank() {
     return Object.values(this.props.banks).map(bank => {
       return (
-        <div className="bank box" key={bank.id}>
-          <div className="bank-name">
-            <strong>{bank.attributes.name}</strong>
-          </div>
-          <div className="bank-accounts">
-            {this.renderAccountsForBank(bank)}
-          </div>
-        </div>
+        <Fragment key={bank.id}>
+          <p className="menu-label">{bank.attributes.name}</p>
+          <ul className="menu-list">{this.renderAccountsForBank(bank)}</ul>
+        </Fragment>
       );
     });
   }
 
   render() {
-    return <>{this.renderAccountsGroupedByBank()}</>;
+    return <aside className="menu">{this.renderAccountsGroupedByBank()}</aside>;
   }
 }
 

@@ -3,23 +3,24 @@ import { connect } from "react-redux";
 import { selectAccount } from "../actions";
 
 class AccountListDetail extends React.Component {
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
     this.props.selectAccount(this.props.account.id);
   }
 
   render() {
     const { name, number } = this.props.account.attributes;
-    const isSelected = this.props.account.id === this.props.selected;
+    const isActive = this.props.account.id === this.props.selected;
 
     return (
-      <div className="bank-account">
-        <span
-          className={`bank-account-name ${isSelected ? "selected" : ""}`}
-          onClick={() => this.handleClick()}
+      <li>
+        <a
+          className={`bank-account-name ${isActive ? "is-active" : ""}`}
+          onClick={e => this.handleClick(e)}
         >
           {name} (...{number.slice(-4)})
-        </span>
-      </div>
+        </a>
+      </li>
     );
   }
 }
