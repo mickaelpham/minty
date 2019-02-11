@@ -1,5 +1,10 @@
 import backend from "../apis/backend";
 
+export const fetchAccountsAndBanks = () => async dispatch => {
+  await dispatch(fetchAccounts());
+  dispatch(fetchBanks());
+};
+
 export const fetchAccounts = () => async dispatch => {
   const response = await backend.get("/api/accounts");
   dispatch({ type: "FETCH_ACCOUNTS", payload: response.data.data });

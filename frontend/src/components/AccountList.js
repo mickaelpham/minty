@@ -1,14 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchAccounts, fetchBanks } from "../actions";
+import { fetchAccountsAndBanks } from "../actions";
 
 import "./AccountList.css";
 import AccountListDetail from "./AccountListDetail";
 
 class AccountList extends React.Component {
   componentDidMount() {
-    this.props.fetchAccounts();
-    this.props.fetchBanks();
+    this.props.fetchAccountsAndBanks();
   }
 
   renderAccountsForBank(bank) {
@@ -54,5 +53,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchAccounts, fetchBanks }
+  { fetchAccountsAndBanks }
 )(AccountList);
